@@ -109,7 +109,10 @@ if __name__ == '__main__':
     elif args.reward_type == 'constant':
         reward_function = None
     elif args.reward_type == 'dual_bound':
-        reward_function = DualBoundFrac()
+        if args.instance_name == 'ca' or args.instance_name == 'indset':
+            reward_function = DualBoundFrac(1)
+        else:
+            reward_function = DualBoundFrac(-1)
     else:
         raise NotImplementedError("reward type not implemented")
 
